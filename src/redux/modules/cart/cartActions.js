@@ -1,9 +1,8 @@
 import actionTypes from '../../../constants/action-types';
 
-
 const addItem = (book, quantity) => ({
   type: actionTypes.CART_ADD,
-  book: { ...book, quantity }
+  book
 });
 
 const removeItem = (book) => ({
@@ -11,14 +10,15 @@ const removeItem = (book) => ({
   book
 });
 
-const incQuantity = (book) => ({
-  type: actionTypes.INC_QUANTITY,
-  book
-});
+// const incQuantity = (book) => ({
+//   type: actionTypes.INC_QUANTITY,
+//   book
+// });
+
 const decQuantity = (book) => ({
   type: actionTypes.DEC_QUANTITY,
   book
 });
 export {
-  addItem, removeItem, incQuantity, decQuantity
+  addItem, removeItem, decQuantity
 };

@@ -36,6 +36,7 @@ import { formatPrice, uzLat } from '../../utils/string';
 const SingleBookPage = ({ location: { state: { book } } }) => {
   const { i18n } = useTranslation();
   const quantity = useSelector(quantitySelector(book));
+  
   const dispatch = useDispatch();
   useEffect(() => () => {
     if (!sessionStorage.getItem(book.id)) {
