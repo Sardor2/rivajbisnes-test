@@ -1,0 +1,1 @@
+docker run --mount type=bind,source="$(pwd)"/build,target=/usr/share/nginx/html/ --name=medium-dev -p 3020:80 nginx:latest

@@ -1,0 +1,11 @@
+export { default as authReducer } from './auth/authReducer';
+export { default as navReducer } from './navbar/navReducer';
+export { default as articlesReducer } from './articles/articlesReducer';
+export { default as singleArticleReducer } from './singleArticle/singleArticleReducer';
+export { default as homeReducer } from './home/homeReducer';
+export { default as userReducer } from './user/userReducer';
+export { default as forgotPasswordReducer } from './forgotPassword/forgotPasswordReducer';
+export { default as bookmarksReducer } from './bookmarks/bookmarksReducer';
+export { default as booksReducer } from './books/booksReducer';
+export { default as cartReducer } from './cart/cartReducer';
+export { default as orderReducer } from './order/orderReducer';
