@@ -27,7 +27,7 @@ export default function cartReducer(state = initialState, action) {
       ...state,
       [action.book.id]: {
         ...state[action.book.id],
-        quantity: state[action.book.id] ? state[action.book.id].quantity + 1 : 2
+        quantity: state[action.book.id] ? state[action.book.id].quantity + 1 : 2 
       }
     };
   }

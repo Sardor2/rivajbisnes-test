@@ -19,7 +19,7 @@ export const totalSelector = createSelector(
 );
 
 export const quantitySelector = (book) => createSelector(
-  cart,
+  cart, 
   (cart) => (cart[book.id] ? cart[book.id].quantity : 1)
 );
 
@@ -27,7 +27,7 @@ export const quantitySelector = (book) => createSelector(
 export const totalQuantitySelector = createSelector(
   cartItems,
   (items) => items.reduce((prev,curr) => {
-  
+    
     console.log(prev,curr);
     return prev + curr.quantity
   },0)
