@@ -39,14 +39,14 @@ const SingleBookPage = ({ location: { state: { book } } }) => {
   
   const dispatch = useDispatch();
   useEffect(() => () => {
-    //code below is removing items from cart automatically
-    // if (!sessionStorage.getItem(book.id)) {
-    //   dispatch(removeItem(book));
-    // }
+    if (!sessionStorage.getItem(book.id)) {
+      dispatch(removeItem(book));
+    }
   }, []);
   const handleAdd = () => {
-    dispatch(addItem(book));
+    dispatch(addItem(book, quantity));
     sessionStorage.setItem(book.id, '1');
+    alert('Savatga qo\'shildi!');
   };
   const bookTitle = (book) => book[`title_${uzLat(i18n.language)}`];
   const bookDescription = (book) => book[`description_${uzLat(i18n.language)}`];

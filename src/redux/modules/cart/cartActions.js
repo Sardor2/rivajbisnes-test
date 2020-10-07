@@ -1,6 +1,6 @@
 import actionTypes from '../../../constants/action-types';
 
-const addItem = (book) => ({
+const addItem = (book, quantity) => ({
   type: actionTypes.CART_ADD,
   book
 });

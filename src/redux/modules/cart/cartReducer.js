@@ -22,16 +22,11 @@ export default function cartReducer(state = initialState, action) {
   case CART_REMOVE: {
     return {
       ...state,
-<<<<<<< HEAD
       [action.book.id]: {
         ...state[action.book.id],
         quantity: state[action.book.id] ? state[action.book.id].quantity + 1 : 2 
       }
     };
-=======
-      cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.book.id)
-    }
->>>>>>> cartExperiment
   }
   // case INC_QUANTITY: {
   //   return {

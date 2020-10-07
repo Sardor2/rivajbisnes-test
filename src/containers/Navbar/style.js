@@ -150,19 +150,15 @@ export const StyledAccountContainer = styled.div`
 
 export const StyledCartContainer = styled.div `
     position: relative;
-    margin-left: 1.25rem;
-    &:hover {
-        cursor: pointer;
-    }
     .total-quantity {
-        position: absolute;
+        position:absolute;
         top:0.5px;
         right:-5px;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-weight:400;
-        font-size:10px;
+        font-weight:bold;
+        font-size:7px;
         color:white;
         width:10px;
         height: 10px;
@@ -170,6 +166,11 @@ export const StyledCartContainer = styled.div `
         background-color:black;
         border-radius: 50%;
         opacity: 1;
+    }
+    img {
+        &:hover {
+            opacity: 1;
+        }
     }
 `
 

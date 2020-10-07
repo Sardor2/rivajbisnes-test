@@ -22,15 +22,18 @@ export const quantitySelector = (book) => createSelector(
   cartItems,
   // (items) => items.filter(item => item.id === book.id)[0].quantity
   items => {
-    if (items.find(item => item.id === book.id)) {
+    
+    if (items.length !== 0) {
       return items.filter(item => item.id === book.id)[0].quantity
     }
-    return 1;
+    return 0;
   }
 );
 
 
 export const totalQuantitySelector = createSelector(
   cartItems,
-  (items) => items.length
+  (items) => items.reduce((prev,curr) => {
+    return prev + curr.quantity
+  },0)
 );
