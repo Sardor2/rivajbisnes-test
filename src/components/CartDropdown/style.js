@@ -10,11 +10,10 @@ export const DropdownContainer = styled.div `
   display: flex;
   flex-direction: column;
   flex-wrap: none;
-  border: 1px solid black;
+  border-color: 1px solid rgb(213, 215, 216);
   z-index: 3;
   color: black;
   background-color: #fff;
-  padding-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
 
   @media (max-width: 800px) {

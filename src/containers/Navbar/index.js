@@ -149,10 +149,10 @@ const NavbarMain = ({ setUser, setToken ,totalQuantity}) => {
             <Nav.Link href="#">
               <img src={IconSearch} alt="icon-search" />
             </Nav.Link>
-              <StyledCartContainer onMouseEnter={() => setHidden(false)} onMouseLeave={() => setHidden(true)}  >
+              <StyledCartContainer onClick={() => setHidden(!hidden)}  >
                 <img className="icon-cart" src={CartIcon} alt="icon-cart" />
                 <span className="total-quantity">{totalQuantity}</span>
-                {hidden ? null: <CartDropdown clickHandler = {() => setHidden(true)} />}
+                {hidden ? null: <CartDropdown clickHandler = {() => setHidden(!hidden)} />}
               </StyledCartContainer>
           </StyledLink>
         </StyledNav>
