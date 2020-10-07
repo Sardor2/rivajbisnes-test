@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Nav } from 'react-bootstrap';
@@ -12,13 +12,13 @@ import {totalQuantitySelector} from '../../redux/selectors/cartSelector';
 
 import { getUser, setUser } from '../../redux/modules/user/userAction';
 import { logout, tokenLocalToRedux } from '../../redux/modules/auth/authActions';
-// import {toggleCartHidden} from '../../redux/modules/cart/cartActions';
+
 
 import { audience } from '../../constants/auth0';
 import { BellIcon, LoginIcon } from '../../constants/icons';
 import { API_URL } from '../../config';
 import LangDropdown from '../../components/LangDropdown';
-// import CartDropdown from '../../components/CartDropdown/index';
+import CartDropdown from '../../components/CartDropdown/index';
 import Spinner from '../../components/spinner';
 import {
   StyledNavbar,
@@ -106,8 +106,7 @@ const NavbarMain = ({ setUser, setToken ,totalQuantity}) => {
       returnTo: window.location.origin
     });
   };
-  
-  
+  const [hidden,setHidden] = useState(true);
   return (
     <>
       <StyledNavbar>
@@ -150,12 +149,11 @@ const NavbarMain = ({ setUser, setToken ,totalQuantity}) => {
             <Nav.Link href="#">
               <img src={IconSearch} alt="icon-search" />
             </Nav.Link>
-            <Nav.Link href="/korzina">
-              <StyledCartContainer >
-                <img src={CartIcon} alt="icon-cart" />
+              <StyledCartContainer onMouseEnter={() => setHidden(false)} onMouseLeave={() => setHidden(true)}  >
+                <img className="icon-cart" src={CartIcon} alt="icon-cart" />
                 <span className="total-quantity">{totalQuantity}</span>
+                {false ? null: <CartDropdown clickHandler = {() => setHidden(true)} />}
               </StyledCartContainer>
-            </Nav.Link>
           </StyledLink>
         </StyledNav>
       </StyledNavbar>

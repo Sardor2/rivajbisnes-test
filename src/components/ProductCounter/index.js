@@ -13,12 +13,12 @@ const ProductCounter = (props) => {
   const dispatch = useDispatch();
 
   const handleIncrement = () => dispatch(addItem(book));
-  const handleDecrement = () => dispatch(decQuantity(book));
+  const handleDecrement = () => dispatch(decQuantity(book)); 
 
   return (
     <StyledContainer {...props}>
       <div>
-        <StyledButton onClick={handleDecrement} disabled={quantity <= 1}>
+        <StyledButton onClick={handleDecrement} disabled={quantity === 1}>
           <img src={Minus} alt="min" />
         </StyledButton>
       </div>
