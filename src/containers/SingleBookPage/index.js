@@ -46,7 +46,7 @@ const SingleBookPage = ({ location: { state: { book } } }) => {
   const handleAdd = () => {
     dispatch(addItem(book, quantity));
     sessionStorage.setItem(book.id, '1');
-    alert('Savatga qo\'shildi!');
+    
   };
   const bookTitle = (book) => book[`title_${uzLat(i18n.language)}`];
   const bookDescription = (book) => book[`description_${uzLat(i18n.language)}`];
