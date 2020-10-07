@@ -1,4 +1,4 @@
-import React,{useRef, useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -19,34 +19,10 @@ import {
 
 
 const CartDropdown = ({cartItems,totalPrice,clickHandler}) => {
-  
-  // Custom Hook to listen to clicks outside the component dropdown
-  function useOutsideClick(ref) {
-    useEffect(() => {
-        /**
-         * Alert if clicked on outside of element
-         */
-        function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
-                // click handler from Navbar hook that controls hidden for dropdown
-                clickHandler(); 
-            }
-        }
-  
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
-  }
   const { i18n } = useTranslation();
-  const wrapperRef = useRef(null);
-  useOutsideClick(wrapperRef);
-
+  
   return (
-  <DropdownContainer ref={wrapperRef} >
+  <DropdownContainer>
       <CartItemsContainer>
         {
           cartItems.length ?

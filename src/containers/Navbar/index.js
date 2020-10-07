@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Nav } from 'react-bootstrap';
@@ -107,6 +107,29 @@ const NavbarMain = ({ setUser, setToken ,totalQuantity}) => {
     });
   };
   const [hidden,setHidden] = useState(true);
+    // Custom Hook to listen to clicks outside the component dropdown
+    function useOutsideClick(ref) {
+      useEffect(() => {
+          /**
+           * Alert if clicked on outside of element
+           */
+          function handleClickOutside(event) {
+              if (ref.current && !ref.current.contains(event.target)) {
+                  // click handler from Navbar hook that controls hidden for dropdown
+                  setHidden(true); 
+              }
+          }
+    
+          // Bind the event listener
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => {
+              // Unbind the event listener on clean up
+              document.removeEventListener("mousedown", handleClickOutside);
+          };
+      }, [ref]);
+    }
+    const wrapperRef = useRef(null);
+    useOutsideClick(wrapperRef);
   return (
     <>
       <StyledNavbar>
@@ -149,11 +172,16 @@ const NavbarMain = ({ setUser, setToken ,totalQuantity}) => {
             <Nav.Link href="#">
               <img src={IconSearch} alt="icon-search" />
             </Nav.Link>
-              <StyledCartContainer onClick={() => setHidden(!hidden)}  >
-                <img className="icon-cart" src={CartIcon} alt="icon-cart" />
-                <span className="total-quantity">{totalQuantity}</span>
-                {hidden ? null: <CartDropdown clickHandler = {() => setHidden(!hidden)} />}
+           
+              <StyledCartContainer ref={wrapperRef} >
+                  <div onClick={() => setHidden(!hidden)} >
+                    <img className="icon-cart" src={CartIcon} alt="icon-cart" />
+                    <span className="total-quantity">{totalQuantity}</span>
+                  </div>
+                  {hidden ? null: <CartDropdown  clickHandler = {() => setHidden(!hidden)} />}
+  
               </StyledCartContainer>
+            
           </StyledLink>
         </StyledNav>
       </StyledNavbar>
