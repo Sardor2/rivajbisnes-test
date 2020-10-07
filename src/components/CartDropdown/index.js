@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import Button from '../Button/index';
+
 import {cartItems} from '../../redux/selectors/cartSelector';
 import {totalSelector} from '../../redux/selectors/cartSelector';
 
@@ -21,7 +21,7 @@ const CartDropdown = ({cartItems,totalPrice,clickHandler}) => (
         {
           cartItems.length ?
           cartItems.map(
-            item => <CartDropdownItem cartItem={item} />
+            item => <CartDropdownItem key={item.id} cartItem={item} />
           ):
           (
             <span className="empty-message" >Savat Bo'sh</span>

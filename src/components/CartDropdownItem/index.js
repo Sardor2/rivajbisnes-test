@@ -7,8 +7,8 @@ import {
   DetailsContainer
 } from './style';
 
-const CartDropdownItem = ({cartItem:{image,title_kr,quantity,price}}) => (
-  <DropdownItemContainer>
+const CartDropdownItem = ({cartItem:{image,title_kr,quantity,price,route}}) => (
+  <DropdownItemContainer to={route}>
     <CartImageContainer>
       <img src={image} />
     </CartImageContainer>

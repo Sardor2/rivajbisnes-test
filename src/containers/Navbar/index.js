@@ -152,7 +152,7 @@ const NavbarMain = ({ setUser, setToken ,totalQuantity}) => {
               <StyledCartContainer onMouseEnter={() => setHidden(false)} onMouseLeave={() => setHidden(true)}  >
                 <img className="icon-cart" src={CartIcon} alt="icon-cart" />
                 <span className="total-quantity">{totalQuantity}</span>
-                {false ? null: <CartDropdown clickHandler = {() => setHidden(true)} />}
+                {hidden ? null: <CartDropdown clickHandler = {() => setHidden(true)} />}
               </StyledCartContainer>
           </StyledLink>
         </StyledNav>
