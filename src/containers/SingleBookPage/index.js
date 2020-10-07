@@ -36,16 +36,17 @@ import { formatPrice, uzLat } from '../../utils/string';
 const SingleBookPage = ({ location: { state: { book } } }) => {
   const { i18n } = useTranslation();
   const quantity = useSelector(quantitySelector(book));
+  
   const dispatch = useDispatch();
   useEffect(() => () => {
-    if (!sessionStorage.getItem(book.id)) {
-      dispatch(removeItem(book));
-    }
+    //code below is removing items from cart automatically
+    // if (!sessionStorage.getItem(book.id)) {
+    //   dispatch(removeItem(book));
+    // }
   }, []);
   const handleAdd = () => {
-    dispatch(addItem(book, quantity));
+    dispatch(addItem(book));
     sessionStorage.setItem(book.id, '1');
-    alert('Savatga qo\'shildi!');
   };
   const bookTitle = (book) => book[`title_${uzLat(i18n.language)}`];
   const bookDescription = (book) => book[`description_${uzLat(i18n.language)}`];

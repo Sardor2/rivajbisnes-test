@@ -80,7 +80,7 @@ const BooksPage = ({
                 <Button
                   type="button"
                   onClick={() => history.push({
-                    pathname: `/category/kitoblar/${featuredBook.id}`,
+                    pathname: `/category/kitoblar/${featuredBook.id}`, 
                     state: { book: featuredBook }
                   })}
                 >

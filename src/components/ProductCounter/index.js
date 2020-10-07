@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StyledContainer, StyledButton } from './style';
 import Plus from '../../assets/icons/plus-simple.svg';
 import Minus from '../../assets/icons/minus.svg';
-import { incQuantity, decQuantity } from '../../redux/modules/cart/cartActions';
+import { addItem, decQuantity } from '../../redux/modules/cart/cartActions';
 import { quantitySelector } from '../../redux/selectors/cartSelector';
 
 const ProductCounter = (props) => {
@@ -12,8 +12,8 @@ const ProductCounter = (props) => {
   const quantity = useSelector(quantitySelector(book));
   const dispatch = useDispatch();
 
-  const handleIncrement = () => dispatch(incQuantity(book));
-  const handleDecrement = () => dispatch(decQuantity(book));
+  const handleIncrement = () => dispatch(addItem(book));
+  const handleDecrement = () => dispatch(decQuantity(book)); 
 
   return (
     <StyledContainer {...props}>
