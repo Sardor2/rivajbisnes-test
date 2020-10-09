@@ -81,7 +81,7 @@ const BooksPage = ({
                   type="button"
                   onClick={() => history.push({
                     pathname: `/category/kitoblar/${featuredBook.id}`, 
-                    state: { book: featuredBook }
+                    state: { book: featuredBook } 
                   })}
                 >
                   {translate('Batafsil', '', i18n)}

@@ -27,7 +27,7 @@ const CartDropdown = ({cartItems,totalPrice,clickHandler}) => {
         {
           cartItems.length ?
           cartItems.map(
-            item => <CartDropdownItem key={item.id} cartItem={item} />
+            item => <CartDropdownItem key={item.id} cartItem={item} closeDropdown={clickHandler}/>
           ):
           (
             <span className="empty-message" >{translate("Savat bo'sh", '', i18n)}</span>

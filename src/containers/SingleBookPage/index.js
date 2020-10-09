@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,8 +33,10 @@ import Ad from '../../components/Ad';
 import { addItem, removeItem } from '../../redux/modules/cart/cartActions';
 import { quantitySelector } from '../../redux/selectors/cartSelector';
 import { formatPrice, uzLat } from '../../utils/string';
-
-const SingleBookPage = ({ location: { state: { book } } }) => {
+import {selectSpecificBook} from '../../redux/selectors/booksSelector';
+// { location: { state: { book } } }
+const SingleBookPage = ({book}) => {
+  console.log(book,"Hello");
   const { i18n } = useTranslation();
   const quantity = useSelector(quantitySelector(book));
   
@@ -143,4 +146,8 @@ SingleBookPage.propTypes = {
   location: PropTypes.objectOf(PropTypes.any)
 };
 
-export default SingleBookPage;
+const mapStateToProps = (state,ownProps) => ({
+  book: selectSpecificBook(ownProps.match.params.id)(state)
+});
+
+export default connect(mapStateToProps)(SingleBookPage);

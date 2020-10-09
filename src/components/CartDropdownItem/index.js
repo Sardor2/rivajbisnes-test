@@ -11,10 +11,10 @@ import {
 
 
 
-const CartDropdownItem = ({cartItem:{image,title_kr,quantity,price,route}}) => {
+const CartDropdownItem = ({cartItem:{image,title_kr,quantity,price,route},closeDropdown}) => {
   const { i18n } = useTranslation();
   return (
-  <DropdownItemContainer to={`/${route}`}>
+  <DropdownItemContainer to={`/${route}`} onClick={closeDropdown} >
     <CartImageContainer>
       <img src={image} />
     </CartImageContainer>

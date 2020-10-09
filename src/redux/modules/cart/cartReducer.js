@@ -5,7 +5,7 @@ import {
 } from './cart.utils';
 
 const {
-  CART_ADD, CART_REMOVE, INC_QUANTITY, DEC_QUANTITY
+  CART_ADD, CART_REMOVE, DEC_QUANTITY
 } = actionTypes;
 
 const initialState = {

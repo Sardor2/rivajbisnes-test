@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import { save, load } from 'redux-localstorage-simple';
+import {logger} from 'redux-logger';
 // Reducers
 import reducer from './rootReducers';
 
