@@ -34,28 +34,40 @@ import { addItem, removeItem } from '../../redux/modules/cart/cartActions';
 import { quantitySelector } from '../../redux/selectors/cartSelector';
 import { formatPrice, uzLat } from '../../utils/string';
 import {selectSpecificBook} from '../../redux/selectors/booksSelector';
+import { getBooks } from '../../redux/modules/books/booksAction';
+import { booksSelector } from '../../redux/selectors/booksSelector';
+import Loader from '../../components/Loader';
+import { LoaderWrapper } from '../CategoryPage/style';
 // { location: { state: { book } } }
-const SingleBookPage = ({book}) => {
-  console.log(book,"Hello");
+const SingleBookPage = ({fetchBooks,loading,book}) => {
+  
+  useEffect (() => {
+     fetchBooks();
+  },[]);
+
   const { i18n } = useTranslation();
   const quantity = useSelector(quantitySelector(book));
-  
   const dispatch = useDispatch();
-  useEffect(() => () => {
-    //code below is removing items from cart automatically
-    // if (!sessionStorage.getItem(book.id)) {
-    //   dispatch(removeItem(book));
-    // }
-  }, []);
+  // useEffect(() => () => {
+  //   //code below is removing items not existing in session storage from cart automatically 
+  //   // if (!sessionStorage.getItem(book.id)) {
+  //   //   dispatch(removeItem(book));
+  //   // }
+    
+  // }, []);
+  
+
   const handleAdd = () => {
     dispatch(addItem(book));
-    sessionStorage.setItem(book.id, '1');
+    sessionStorage.setItem(book.id, '1'); 
   };
   const bookTitle = (book) => book[`title_${uzLat(i18n.language)}`];
   const bookDescription = (book) => book[`description_${uzLat(i18n.language)}`];
+
   return (
     <StyledContainer>
-      <TopContainer>
+    {!loading &&
+      (<TopContainer>
         <BreadCumb>
           <span>
             <Link to="/">{translate('Asosiy', '', i18n)}</Link>
@@ -108,8 +120,10 @@ const SingleBookPage = ({book}) => {
             </InteractionContainer>
           </BookOverview>
         </MainDescription>
-      </TopContainer>
-      <DownContainer>
+      </TopContainer>)
+    }
+    { !loading && 
+      (<DownContainer>
         <BookDescription>
           <hr />
           <h1>{translate('Mahsulot tavsifi', '', i18n)}</h1>
@@ -133,21 +147,44 @@ const SingleBookPage = ({book}) => {
           </Line>
         </BookDescription>
         <Ad priority={1} />
-      </DownContainer>
+      </DownContainer>)
+    }
+
+    {loading && (
+          <LoaderWrapper>
+            <Loader />
+          </LoaderWrapper>
+        )}
     </StyledContainer>
   );
 };
 
+
+
+
 SingleBookPage.defaultProps = {
-  location: PropTypes.objectOf(PropTypes.any)
+  location: PropTypes.objectOf(PropTypes.any),
+  fetchBooks: () => {},
+  loading: false,
+  book: {}
 };
 
 SingleBookPage.propTypes = {
-  location: PropTypes.objectOf(PropTypes.any)
+  location: PropTypes.objectOf(PropTypes.any),
+  fetchBooks: PropTypes.func,
+  loading: PropTypes.bool,
+  book: PropTypes.objectOf(PropTypes.any)
 };
 
 const mapStateToProps = (state,ownProps) => ({
-  book: selectSpecificBook(ownProps.match.params.id)(state)
+  book: selectSpecificBook(ownProps.match.params.id)(state),
+  books: booksSelector(state),
+  loading: state.booksReducer.loading,
+  error: state.booksReducer.error
 });
 
-export default connect(mapStateToProps)(SingleBookPage);
+const mapDispatchToProps = (dispatch) => ({
+  fetchBooks: () => dispatch(getBooks())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(SingleBookPage);

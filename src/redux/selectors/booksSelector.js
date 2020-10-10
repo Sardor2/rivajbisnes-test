@@ -30,8 +30,6 @@ export const selectSpecificBook = (bookId) =>
   createSelector(
     booksSelector,
     books => {
-      console.log(books,'Hello',bookId);
-      console.log(books.find(book => book.id === parseInt(bookId, 10)));
       return books.find(book => book.id === parseInt(bookId, 10))
     }
 );

@@ -32,7 +32,8 @@ const BooksPage = ({
   const { i18n } = useTranslation();
 
   const [featuredBook, setFeatured] = useState({});
-  useEffect(() => {
+
+  useEffect( () => {
     fetchBooks();
   }, []);
 
@@ -41,7 +42,9 @@ const BooksPage = ({
     const randomBook = books[rand];
     setFeatured({ ...featuredBook, ...randomBook });
   }, [books]);
+
   const history = useHistory();
+
   return (
     <StyledContainer>
       {!loading && (
@@ -80,8 +83,7 @@ const BooksPage = ({
                 <Button
                   type="button"
                   onClick={() => history.push({
-                    pathname: `/category/kitoblar/${featuredBook.id}`, 
-                    state: { book: featuredBook } 
+                    pathname: `/category/kitoblar/${featuredBook.id}`
                   })}
                 >
                   {translate('Batafsil', '', i18n)}
